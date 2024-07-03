@@ -1,0 +1,17 @@
+import re
+
+# Вариант 1: Сырые строки
+file_path = r"C:\Users\salim\Downloads\ключи виноград 1п.cadb"
+
+# Открываем файл для чтения
+with open(file_path, 'r', encoding='utf-8') as file:
+    file_contents = file.read()
+
+# Используем регулярное выражение для поиска значений из 'CardNo', состоящих из восьми символов
+card_keys = re.findall(r'CardNo\D*([0-9a-zA-Z]{8})', file_contents)
+
+# Форматируем найденные ключи, заключая их в кавычки и разделяя запятыми
+formatted_keys = ', '.join(f"'{key}'" for key in card_keys)
+
+# Выводим отформатированные ключи
+print(f"[{formatted_keys}]")

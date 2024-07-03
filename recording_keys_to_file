@@ -1,0 +1,33 @@
+import re
+
+# Путь к файлу с результатами
+output_file_path = r"C:\Users\salim\Downloads\ключи виноград 1п.cadb"
+
+# Чтение содержимого файла
+with open(output_file_path, 'r') as file:
+    file_contents = file.readlines()
+
+# Ваш список ключей
+your_list =
+
+
+# Регулярное выражение для поиска и замены ключей
+pattern = r'(CardNo: )(\b[A-F0-9]{8}\b)'
+
+# Обновление содержимого файла
+updated_contents = []
+for line in file_contents:
+    match = re.search(pattern, line)
+    if match and your_list:
+        # Замена найденного ключа на новый из списка
+        new_key = your_list.pop(0)
+        updated_line = re.sub(pattern, r'\\1' + new_key, line)
+        updated_contents.append(updated_line)
+    else:
+        updated_contents.append(line)
+
+# Запись обновленного содержимого обратно в файл
+with open(output_file_path, 'w') as file:
+    file.writelines(updated_contents)
+
+print(f'Ключи были успешно обновлены в файле {output_file_path}')

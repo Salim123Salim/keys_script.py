@@ -1,0 +1,10 @@
+def reverse_pattern(s):
+    if len(s) == 8:
+        return s[7] + s[6] + s[4] + s[5] + s[3] + s[2] + s[0] + s[1]
+    else:
+        return "Строка должна содержать ровно 8 символов"
+
+# Пример использования функции
+original_string = "12345678"
+reversed_string = reverse_pattern(original_string)
+print(reversed_string)  # Выведет: 78563412

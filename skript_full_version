@@ -1,0 +1,26 @@
+import re
+
+
+def reorder_sequence(s):
+    return ''.join([s[i:i+2] for i in range(0, len(s), 2)][::-1])
+
+
+file_path = r"C:\Users\salim\Downloads\ключи виноград 1п.cadb"
+
+
+with open(file_path, 'r', encoding='utf-8') as file:
+    file_contents = file.readlines()
+
+
+new_file_contents = []
+for line in file_contents:
+    
+    new_line = re.sub(r'"CardNo":"([A-Fa-f0-9]{8})"', lambda match: f'"CardNo":"{reorder_sequence(match.group(1))}"', line)
+    new_file_contents.append(new_line)
+
+
+with open(file_path, 'w', encoding='utf-8') as file:
+    file.writelines(new_file_contents)
+
+
+print(f'Данные были успешно обновлены в файле {file_path}')
